@@ -551,6 +551,38 @@
             to { opacity: 1; transform: scale(1); }
         }
 
+        /* Scroll Animation Styles */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.4s ease-out;
+        }
+        
+        .scroll-animate.animate-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .stagger-1 {
+            transition-delay: 0.05s;
+        }
+        
+        .stagger-2 {
+            transition-delay: 0.1s;
+        }
+        
+        .stagger-3 {
+            transition-delay: 0.15s;
+        }
+        
+        .stagger-4 {
+            transition-delay: 0.2s;
+        }
+        
+        .stagger-5 {
+            transition-delay: 0.25s;
+        }
+
         /* Contact Section */
         .contact {
             padding: 80px 0;
@@ -712,7 +744,7 @@
                 <img src="yixiao at penn.jpg" alt="Yixiao at Upenn">
             </div>
             <h1>Yixiao Ling</h1>
-            <p>Please call me Yixiao (pronounced as Ee-Shee-ow) or Claire 😄.</p>
+            <p>Please call me Yixiao (pronounced as Ee-Shee-ow) 😄.</p>
             <p>I graduated from the University of Pennsylvania with an M.S. in Data Science in May 2025, and I’m now an AI Engineer at SAP.</p>
             
             <div class="hero-buttons">
@@ -722,7 +754,7 @@
         </div>
     </section>
 
-    <section class="about" id="about">
+    <section class="about scroll-animate" id="about">
         <div class="container">
             <h2 class="section-title">About</h2>
             
@@ -774,13 +806,13 @@
     </section>
 
     <!-- Skills Section -->
-    <section class="skills" id="skills">
+    <section class="skills scroll-animate" id="skills">
         <div class="container">
             <h2 class="section-title">My Skills</h2>
             
             <div class="skills-content">
                 <!-- Languages -->
-                <div class="skill-card">
+                <div class="skill-card scroll-animate stagger-1">
                   <div class="skill-card-header">
                     <div class="skill-icon"><i class="fas fa-code" aria-hidden="true"></i></div>
                     <h3>Programming Languages</h3>
@@ -796,7 +828,7 @@
                 </div>
               
                 <!-- Web & Backend -->
-                <div class="skill-card">
+                <div class="skill-card scroll-animate stagger-2">
                   <div class="skill-card-header">
                     <div class="skill-icon"><i class="fas fa-laptop-code" aria-hidden="true"></i></div>
                     <h3>Web & Backend</h3>
@@ -812,7 +844,7 @@
                 </div>
               
                 <!-- Cloud & Databases -->
-                <div class="skill-card">
+                <div class="skill-card scroll-animate stagger-3">
                   <div class="skill-card-header">
                     <div class="skill-icon"><i class="fas fa-database" aria-hidden="true"></i></div>
                     <h3>Cloud & Databases</h3>
@@ -827,7 +859,7 @@
                 </div>
               
                 <!-- Tools & Engineering Practices -->
-                <div class="skill-card">
+                <div class="skill-card scroll-animate stagger-4">
                   <div class="skill-card-header">
                     <div class="skill-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
                     <h3>Tools & Engineering Practices</h3>
@@ -844,7 +876,7 @@
                 </div>
 
                 <!-- Additional Skills -->
-                <div class="skill-card">
+                <div class="skill-card scroll-animate stagger-5">
                     <div class="skill-card-header">
                       <div class="skill-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
                       <h3>Additional Skills</h3>
@@ -864,7 +896,7 @@
     </section>
 
     <!-- Projects Section -->
-    <section class="projects" id="projects">
+    <section class="projects scroll-animate" id="projects">
         <div class="container">
             <h2 class="section-title">Recent Projects</h2>
             
@@ -879,7 +911,7 @@
             </div>
             
             <div class="projects-grid">
-                <div class="project-item" data-modal="company-report-modal" data-category="full-stack">
+                <div class="project-item scroll-animate stagger-1" data-modal="company-report-modal" data-category="full-stack">
                     <img src="cse.PNG" alt="Customer Strategy Explorer" class="project-image">
                     <div class="project-item-content">
                         <div class="project-text-content">
@@ -892,7 +924,7 @@
                     </div>
                 </div>
                 
-                <div class="project-item" data-modal="auto-slides-modal" data-category="full-stack">
+                <div class="project-item scroll-animate stagger-2" data-modal="auto-slides-modal" data-category="full-stack">
                     <img src="exec.PNG" alt="Executive Value Brief" class="project-image">
                     <div class="project-item-content">
                         <div class="project-text-content">
@@ -905,7 +937,7 @@
                     </div>
                 </div>
 
-                <div class="project-item" data-modal="esg-agent-modal" data-category="full-stack">
+                <div class="project-item scroll-animate stagger-3" data-modal="esg-agent-modal" data-category="full-stack">
                     <img src="ESG - agent.jpg" alt="ESG - Agent">
                     <div class="project-item-content">
                         <div class="project-text-content">
@@ -918,7 +950,7 @@
                     </div>
                 </div>
                 
-                <div class="project-item" data-modal="portfolio-modal" data-category="front-end">
+                <div class="project-item scroll-animate stagger-4" data-modal="portfolio-modal" data-category="front-end">
                     <img src="portfolio.png" alt="Portfolio Website" class="project-image">
                     <div class="project-item-content">
                         <div class="project-text-content">
@@ -933,7 +965,7 @@
                     </div>
                 </div>
                 
-                <div class="project-item" data-modal="sales-leaderboard-modal" data-category="front-end">
+                <div class="project-item scroll-animate stagger-5" data-modal="sales-leaderboard-modal" data-category="front-end">
                     <img src="leaderboard_full.PNG" alt="Sales Leaderboard" class="project-image">
                     <div class="project-item-content">
                         <div class="project-text-content">
@@ -947,7 +979,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section class="contact" id="contact">
+    <section class="contact scroll-animate" id="contact">
         <div class="container">
             <h2 class="section-title">Contact</h2>
             <p class="contact-subtitle">Shoot me a message via any of the links below!</p>
@@ -1025,6 +1057,27 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Scroll Animation Observer
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all elements with scroll-animate class
+            const animatedElements = document.querySelectorAll('.scroll-animate');
+            animatedElements.forEach(element => {
+                observer.observe(element);
+            });
+            
+            // Existing filter and modal functionality
             const filterButtons = document.querySelectorAll('.filter-btn');
             
             filterButtons.forEach(button => {
