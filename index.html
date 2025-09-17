@@ -1016,7 +1016,7 @@
             <p class="contact-subtitle">Shoot me a message via any of the links below!</p>
             
             <div class="contact-icons">
-                <a href="mailto:yxling@alumni.upenn.edu" class="contact-icon">
+                <a href="mailto:yixiaoling@alumni.upenn.edu" class="contact-icon" id="email-icon" title="Click to send email or right-click to copy address">
                     <i class="fas fa-envelope"></i>
                 </a>
                 <a href="https://github.com/yixiao-ling?tab=repositories" target="_blank" class="contact-icon">
@@ -1025,6 +1025,15 @@
                 <a href="https://www.linkedin.com/in/yixiao-ling/" target="_blank" class="contact-icon">
                     <i class="fab fa-linkedin-in"></i>
                 </a>
+            </div>
+            
+            <!-- Email fallback display -->
+            <div id="email-display" style="display: none; margin-top: 20px; padding: 15px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <p style="margin: 0; color: #333; font-size: 16px;">
+                    Email: <strong id="email-text">yxling@alumni.upenn.edu</strong>
+                    <button id="copy-email" style="margin-left: 10px; padding: 5px 15px; background-color: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Copy</button>
+                </p>
+                <p id="copy-success" style="margin: 5px 0 0 0; color: green; font-size: 14px; display: none;">Email copied to clipboard!</p>
             </div>
         </div>
     </section>
@@ -1088,6 +1097,72 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+            // Email functionality
+            const emailIcon = document.getElementById('email-icon');
+            const emailDisplay = document.getElementById('email-display');
+            const copyEmailBtn = document.getElementById('copy-email');
+            const copySuccess = document.getElementById('copy-success');
+            const emailText = document.getElementById('email-text');
+            
+            // Handle email icon click
+            emailIcon.addEventListener('click', function(e) {
+                // Try to open default email client
+                // If it fails or user wants to see the email, show fallback
+                setTimeout(function() {
+                    if (emailDisplay.style.display === 'none') {
+                        emailDisplay.style.display = 'block';
+                    }
+                }, 1000);
+            });
+            
+            // Handle right-click to show email address
+            emailIcon.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                emailDisplay.style.display = 'block';
+            });
+            
+            // Copy email functionality
+            copyEmailBtn.addEventListener('click', function() {
+                const email = emailText.textContent;
+                
+                // Modern approach
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(email).then(function() {
+                        showCopySuccess();
+                    }).catch(function() {
+                        // Fallback for older browsers
+                        fallbackCopyTextToClipboard(email);
+                    });
+                } else {
+                    // Fallback for older browsers
+                    fallbackCopyTextToClipboard(email);
+                }
+            });
+            
+            function fallbackCopyTextToClipboard(text) {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    showCopySuccess();
+                } catch (err) {
+                    console.error('Fallback: Oops, unable to copy', err);
+                }
+                
+                document.body.removeChild(textArea);
+            }
+            
+            function showCopySuccess() {
+                copySuccess.style.display = 'block';
+                setTimeout(function() {
+                    copySuccess.style.display = 'none';
+                }, 2000);
+            }
+            
             // Scroll Animation Observer
             const observerOptions = {
                 threshold: 0.1,
