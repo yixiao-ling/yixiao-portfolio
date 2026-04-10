@@ -632,6 +632,18 @@
             margin-right: auto;
         }
         
+        .contact-wechat-id {
+            margin-top: 24px;
+            margin-bottom: 0;
+            font-size: 16px;
+            color: #666;
+        }
+        
+        .contact-wechat-id strong {
+            color: #333;
+            font-weight: 600;
+        }
+        
         .contact-icons {
             display: flex;
             justify-content: center;
@@ -1017,10 +1029,12 @@
                 <a href="https://github.com/yixiao-ling?tab=repositories" target="_blank" class="contact-icon">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="#" class="contact-icon" title="WeChat ID: 17305839433" onclick="event.preventDefault();">
+                <a href="#" class="contact-icon" id="wechat-icon" title="Click to copy WeChat ID">
                     <i class="fab fa-weixin"></i>
                 </a>
             </div>
+            <p class="contact-wechat-id">WeChat ID: <strong>17305839433</strong></p>
+            <p id="wechat-copy-success" style="display: none; margin-top: 16px; text-align: center; color: #15803d; font-size: 14px;">WeChat ID copied to clipboard!</p>
             
             <!-- Email fallback display -->
             <div id="email-display" style="display: none; margin-top: 20px; padding: 15px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
@@ -1134,7 +1148,7 @@
                 }
             });
             
-            function fallbackCopyTextToClipboard(text) {
+            function fallbackCopyTextToClipboard(text, onSuccess) {
                 const textArea = document.createElement("textarea");
                 textArea.value = text;
                 document.body.appendChild(textArea);
@@ -1143,7 +1157,7 @@
                 
                 try {
                     document.execCommand('copy');
-                    showCopySuccess();
+                    (onSuccess || showCopySuccess)();
                 } catch (err) {
                     console.error('Fallback: Oops, unable to copy', err);
                 }
@@ -1156,6 +1170,29 @@
                 setTimeout(function() {
                     copySuccess.style.display = 'none';
                 }, 2000);
+            }
+            
+            const wechatIcon = document.getElementById('wechat-icon');
+            const wechatCopySuccess = document.getElementById('wechat-copy-success');
+            const WECHAT_ID = '17305839433';
+            function showWeChatCopySuccess() {
+                if (!wechatCopySuccess) return;
+                wechatCopySuccess.style.display = 'block';
+                setTimeout(function() {
+                    wechatCopySuccess.style.display = 'none';
+                }, 2000);
+            }
+            if (wechatIcon) {
+                wechatIcon.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(WECHAT_ID).then(showWeChatCopySuccess).catch(function() {
+                            fallbackCopyTextToClipboard(WECHAT_ID, showWeChatCopySuccess);
+                        });
+                    } else {
+                        fallbackCopyTextToClipboard(WECHAT_ID, showWeChatCopySuccess);
+                    }
+                });
             }
             
             // Scroll Animation Observer
