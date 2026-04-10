@@ -1023,26 +1023,33 @@
             <p class="contact-subtitle">Shoot me a message via any of the links below!</p>
             
             <div class="contact-icons">
-                <a href="mailto:yixiaoling@alumni.upenn.edu" class="contact-icon" id="email-icon" title="Click to send email or right-click to copy address">
+                <a href="mailto:yixiaoling@alumni.upenn.edu" class="contact-icon" id="email-icon" title="Click to copy email">
                     <i class="fas fa-envelope"></i>
                 </a>
                 <a href="https://github.com/yixiao-ling?tab=repositories" target="_blank" class="contact-icon">
                     <i class="fab fa-github"></i>
                 </a>
-                <a href="mailto:17305839433" class="contact-icon" id="wechat-icon" title="Click to copy WeChat ID">
+                <a href="#" class="contact-icon" id="wechat-icon" title="Click to copy WeChat ID">
                     <i class="fab fa-weixin"></i>
                 </a>
             </div>
-            <p class="contact-wechat-id">WeChat ID: <strong>17305839433</strong></p>
-            <p id="wechat-copy-success" style="display: none; margin-top: 16px; text-align: center; color: #15803d; font-size: 14px;">WeChat ID copied to clipboard!</p>
-            
-            <!-- Email fallback display -->
-            <div id="email-display" style="display: none; margin-top: 20px; padding: 15px; background-color: white; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                <p style="margin: 0; color: #333; font-size: 16px;">
-                    Email: <strong id="email-text">yxling@alumni.upenn.edu</strong>
-                    <button id="copy-email" style="margin-left: 10px; padding: 5px 15px; background-color: var(--primary-color); color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 14px;">Copy</button>
+
+            <!-- WeChat popup -->
+            <div id="wechat-display" style="display:none; margin-top:20px; padding:15px; background-color:white; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+                <p style="margin:0; color:#333; font-size:16px;">
+                    WeChat ID: <strong>17305839433</strong>
+                    <button id="copy-wechat" style="margin-left:10px; padding:5px 15px; background-color:var(--primary-color); color:white; border:none; border-radius:5px; cursor:pointer; font-size:14px;">Copy</button>
                 </p>
-                <p id="copy-success" style="margin: 5px 0 0 0; color: green; font-size: 14px; display: none;">Email copied to clipboard!</p>
+                <p id="wechat-copy-success" style="margin:5px 0 0 0; color:green; font-size:14px; display:none;">WeChat ID copied!</p>
+            </div>
+
+            <!-- Email popup -->
+            <div id="email-display" style="display:none; margin-top:20px; padding:15px; background-color:white; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1);">
+                <p style="margin:0; color:#333; font-size:16px;">
+                    Email: <strong>yixiaoling@alumni.upenn.edu</strong>
+                    <button id="copy-email" style="margin-left:10px; padding:5px 15px; background-color:var(--primary-color); color:white; border:none; border-radius:5px; cursor:pointer; font-size:14px;">Copy</button>
+                </p>
+                <p id="email-copy-success" style="margin:5px 0 0 0; color:green; font-size:14px; display:none;">Email copied!</p>
             </div>
         </div>
     </section>
@@ -1113,26 +1120,18 @@
             const copySuccess = document.getElementById('copy-success');
             const emailText = document.getElementById('email-text');
             
-            // Handle email icon click
+            // Handle email icon click - toggle popup
             emailIcon.addEventListener('click', function(e) {
-                // Try to open default email client
-                // If it fails or user wants to see the email, show fallback
-                setTimeout(function() {
-                    if (emailDisplay.style.display === 'none') {
-                        emailDisplay.style.display = 'block';
-                    }
-                }, 1000);
+                e.preventDefault();
+                const wechatDisplay = document.getElementById('wechat-display');
+                wechatDisplay.style.display = 'none';
+                emailDisplay.style.display = emailDisplay.style.display === 'none' ? 'block' : 'none';
             });
             
-            // Handle right-click to show email address
-            emailIcon.addEventListener('contextmenu', function(e) {
-                e.preventDefault();
-                emailDisplay.style.display = 'block';
-            });
             
             // Copy email functionality
             copyEmailBtn.addEventListener('click', function() {
-                const email = emailText.textContent;
+                const email = 'yxling@alumni.upenn.edu';
                 
                 // Modern approach
                 if (navigator.clipboard) {
@@ -1185,13 +1184,9 @@
             if (wechatIcon) {
                 wechatIcon.addEventListener('click', function(e) {
                     e.preventDefault();
-                    if (navigator.clipboard && navigator.clipboard.writeText) {
-                        navigator.clipboard.writeText(WECHAT_ID).then(showWeChatCopySuccess).catch(function() {
-                            fallbackCopyTextToClipboard(WECHAT_ID, showWeChatCopySuccess);
-                        });
-                    } else {
-                        fallbackCopyTextToClipboard(WECHAT_ID, showWeChatCopySuccess);
-                    }
+                    emailDisplay.style.display = 'none';
+                    const wechatDisplay = document.getElementById('wechat-display');
+                    wechatDisplay.style.display = wechatDisplay.style.display === 'none' ? 'block' : 'none';
                 });
             }
             
