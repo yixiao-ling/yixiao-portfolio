@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yixiao Ling - Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.loli.net/css2?family=Raleway:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.loli.net/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --primary-color: #6a11cb;
@@ -949,6 +949,32 @@
             </div>
             
             <div class="projects-grid">
+                <div class="project-item scroll-animate stagger-1" data-modal="ai-daily-news-modal" data-category="full-stack">
+                    <img src="ai-daily-news.jpg" alt="AI Daily News" class="project-image">
+                    <div class="project-item-content">
+                        <div class="project-text-content">
+                            <h3>AI Daily News (full-stack)</h3>
+                            <p>Automated AI news digest that curates, summarizes, and pushes daily AI industry highlights to subscribers via a clean, readable feed.</p>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://www.bilibili.com/video/BV16aR4BmE9C/?spm_id_from=333.1387.upload.video_card.click&vd_source=77bf1bae541c865de0eff5e0ae87f6d5" target="_blank" class="btn-demo">Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-item scroll-animate stagger-2" data-modal="stock-assistant-modal" data-category="full-stack">
+                    <img src="stock-assistant.jpg" alt="AI Stock Research Assistant" class="project-image">
+                    <div class="project-item-content">
+                        <div class="project-text-content">
+                            <h3>AI Stock Research Assistant (full-stack)</h3>
+                            <p>AI-powered investment research assistant that analyzes market data, earnings reports, and news to generate actionable stock insights.</p>
+                        </div>
+                        <div class="project-buttons">
+                            <a href="https://www.bilibili.com/video/BV1LCR4BgEDZ/?spm_id_from=333.1387.homepage.video_card.click&vd_source=77bf1bae541c865de0eff5e0ae87f6d5" target="_blank" class="btn-demo">Demo</a>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="project-item scroll-animate stagger-1" data-modal="company-report-modal" data-category="full-stack">
                     <img src="cse.PNG" alt="Customer Strategy Explorer" class="project-image">
                     <div class="project-item-content">
@@ -1055,6 +1081,28 @@
     </section>
 
     <!-- Image Modal -->
+    <div id="ai-daily-news-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="ai-daily-news.jpg" alt="AI Daily News Full View" class="modal-image">
+            <div class="modal-caption">
+                <h3>AI Daily News</h3>
+                <p>An automated pipeline that curates, summarizes, and pushes daily AI industry highlights to subscribers. The system monitors top AI sources, distills key developments using LLMs, and delivers a clean, readable digest — keeping users up to date with the fast-moving AI landscape without information overload.</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="stock-assistant-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img src="stock-assistant.jpg" alt="AI Stock Research Assistant Full View" class="modal-image">
+            <div class="modal-caption">
+                <h3>AI Stock Research Assistant</h3>
+                <p>An AI-powered investment research assistant that analyzes market data, earnings reports, and financial news to generate actionable stock insights. The tool helps investors make more informed decisions by surfacing key signals and summarizing complex financial information in plain language.</p>
+            </div>
+        </div>
+    </div>
+
     <div id="sales-leaderboard-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
